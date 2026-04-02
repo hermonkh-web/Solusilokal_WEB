@@ -47,16 +47,18 @@ creator: "SolusiLokal",
 publisher: "SolusiLokal",
 
 icons: {
+
 icon: [
-{ url: "/favicon.ico" },
-{ url: "/icon.png", type: "image/png" }
+{ url: "/image/favicon.ico" },
+{ url: "/image/icon.png", type: "image/png" }
 ],
 
-shortcut: ["/favicon.ico"],
+shortcut: ["/image/favicon.ico"],
 
 apple: [
-{ url: "/apple-icon.png" }
-]
+{ url: "/image/icon.png" }
+],
+
 },
 
 openGraph: {
@@ -72,7 +74,7 @@ siteName: "SolusiLokal",
 
 images: [
 {
-url: "/og-image.jpg",
+url: "/image/og-image.jpg",
 width: 1200,
 height: 630,
 alt: "SolusiLokal Website Service"
@@ -94,7 +96,7 @@ title: "SolusiLokal.id",
 description:
 "Jasa website UMKM dan sistem digital untuk bisnis berkembang",
 
-images: ["/og-image.jpg"]
+images: ["/image/og-image.jpg"]
 
 },
 
