@@ -11,32 +11,143 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+import './globals.css'
+
 export const metadata = {
-  title: "SolusiLokal.id | Jasa Website & Sistem Bisnis UMKM",
-  description: "Solusi website, landing page, dan sistem digital untuk UMKM. Konsultasi gratis.",
 
-  openGraph: {
-    title: "SolusiLokal.id | Jasa Website UMKM",
-    description: "Kami membantu UMKM naik kelas dengan website dan sistem digital.",
-    url: "https://solusilokal.id",
-    siteName: "SolusiLokal.id",
-    images: [
-      {
-        url: "https://solusilokal.id/og-image.jpg",
-        width: 1200,
-        height: 630,
-      }
-    ],
-    locale: "id_ID",
-    type: "website",
-  },
+metadataBase: new URL("https://solusilokal.id"),
 
-  twitter: {
-    card: "summary_large_image",
-    title: "SolusiLokal.id",
-    description: "Jasa website UMKM dan sistem bisnis digital",
-    images: ["https://solusilokal.id/og-image.jpg"],
-  }
+title: {
+default: "SolusiLokal.id | Jasa Website UMKM & Sistem Digital",
+template: "%s | SolusiLokal"
+},
+
+description:
+"Jasa pembuatan website UMKM, landing page, company profile dan sistem digital bisnis. Konsultasi gratis untuk bisnis yang ingin berkembang.",
+
+keywords: [
+"jasa website umkm",
+"jasa website palangkaraya",
+"jasa landing page",
+"company profile website",
+"jasa web murah",
+"web developer indonesia",
+"sistem bisnis digital",
+"automation bisnis"
+],
+
+authors: [
+{
+name: "SolusiLokal",
+url: "https://solusilokal.id"
+}
+],
+
+creator: "SolusiLokal",
+publisher: "SolusiLokal",
+
+icons: {
+icon: [
+{ url: "/favicon.ico" },
+{ url: "/icon.png", type: "image/png" }
+],
+
+shortcut: ["/favicon.ico"],
+
+apple: [
+{ url: "/apple-icon.png" }
+]
+},
+
+openGraph: {
+
+title: "SolusiLokal.id | Website & Sistem Digital UMKM",
+
+description:
+"Kami membantu UMKM naik level dengan website profesional dan sistem digital.",
+
+url: "https://solusilokal.id",
+
+siteName: "SolusiLokal",
+
+images: [
+{
+url: "/og-image.jpg",
+width: 1200,
+height: 630,
+alt: "SolusiLokal Website Service"
+}
+],
+
+locale: "id_ID",
+
+type: "website"
+
+},
+
+twitter: {
+
+card: "summary_large_image",
+
+title: "SolusiLokal.id",
+
+description:
+"Jasa website UMKM dan sistem digital untuk bisnis berkembang",
+
+images: ["/og-image.jpg"]
+
+},
+
+robots: {
+
+index: true,
+
+follow: true,
+
+nocache: false,
+
+googleBot: {
+
+index: true,
+
+follow: true,
+
+noimageindex: false,
+
+"max-video-preview": -1,
+
+"max-image-preview": "large",
+
+"max-snippet": -1
+
+}
+
+},
+
+verification: {
+
+google: "ISI_KALAU_SUDAH_DAFTAR_SEARCH_CONSOLE"
+
+}
+
+}
+
+export default function RootLayout({ children }) {
+
+return (
+
+<html lang="id">
+
+<body>
+
+{children}
+
+</body>
+
+</html>
+
+)
+
 }
 
 
