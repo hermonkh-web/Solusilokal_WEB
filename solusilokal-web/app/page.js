@@ -16,15 +16,20 @@ import {
 // ==========================================
 // KONFIGURASI GLOBAL & SEO
 // ==========================================
+// 1. URL Logo & Favicon (Menggunakan file yang sudah ada di public/image/)
 const LOGO_URL = "image/logo-solusilokal-1.png";
+const SITE_URL = "https://solusilokal.id"; // Sesuaikan dengan domain Anda nanti
+
+// 2. URL Google Apps Script Web App
 const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbww9fcwLGKQhj4RKyY1UgyPZhp74THjUrO_GU3VM-iYLbvSqYiR9OjzQSCiH-WnoSLI/exec";
 
+// 3. Skema JSON-LD untuk SEO Local Business / Agency
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "SolusiLokal.ID",
-  "image": LOGO_URL,
-  "description": "Digital development partner yang membantu bisnis jasa membangun website profesional, memperkuat branding, dan mengembangkan sistem digital operasional terstruktur.",
+  "image": `${SITE_URL}/${LOGO_URL}`,
+  "description": "Partner digital development and creative studio di Palangka Raya. Ahli dalam membangun website profesional, sistem operasional, dan branding untuk bisnis jasa.",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Palangka Raya",
@@ -33,15 +38,19 @@ const schemaData = {
   },
   "telephone": "+6289529605601",
   "email": "solusilokalid@gmail.com",
-  "url": "https://solusilokal.id",
-  "priceRange": "$$"
+  "url": SITE_URL,
+  "priceRange": "Rp3.000.000 - Rp20.000.000",
+  "founder": {
+    "@type": "Person",
+    "name": "Hermon Triberly Karisma"
+  }
 };
 
 const BrandLogo = ({ className = "w-10 h-10 object-contain" }) => (
   <img src={LOGO_URL} alt="SolusiLokal Logo" className={className} />
 );
 
-// Ikon Instagram Kustom (Menghindari error import lucide-react)
+// Ikon Instagram Kustom
 const Instagram = ({ size = 24, className = "" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
@@ -61,7 +70,15 @@ export default function SolusiLokalApp() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
+  // Efek untuk Inisialisasi Favicon & Dark Mode
   useEffect(() => {
+    // Set Favicon secara dinamis
+    const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+    link.type = 'image/png';
+    link.rel = 'shortcut icon';
+    link.href = LOGO_URL;
+    document.getElementsByTagName('head')[0].appendChild(link);
+
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
     } else {
@@ -69,21 +86,52 @@ export default function SolusiLokalApp() {
     }
   }, [isDarkMode]);
 
+  // Efek untuk Dynamic SEO & Tab Title setiap perpindahan halaman
   useEffect(() => {
     window.scrollTo(0, 0);
     setIsMobileMenuOpen(false);
 
     const seoData = {
-      home: { title: "SolusiLokal.ID - Digital Growth Partner Bisnis Jasa", desc: "Partner digital yang membantu bisnis jasa membangun website profesional, memperkuat branding, dan sistem operasional untuk naik level." },
-      services: { title: "Layanan Kami - SolusiLokal.ID", desc: "Layanan website development, system development, dan creative branding yang didesain khusus untuk mengonversi klien B2B Anda." },
-      solutions: { title: "Solusi Fase Bisnis - SolusiLokal.ID", desc: "Temukan solusi arsitektur digital yang paling sesuai untuk tahap bisnis jasa Anda, mulai dari Starter hingga Pro." },
-      portfolio: { title: "Studi Kasus Klien - SolusiLokal.ID", desc: "Lihat hasil transformasi digital bisnis klien kami dari operasional manual menuju sistem cerdas yang skalabel." },
-      process: { title: "Cara Kerja Workflow - SolusiLokal.ID", desc: "Proses kerja terstruktur dari konsultasi, perencanaan arsitektur, hingga implementasi teknologi dan handover." },
-      pricing: { title: "Harga Paket Investasi - SolusiLokal.ID", desc: "Model layanan terstandarisasi dengan transparansi harga pembuatan website dan sistem digital operasional (Mulai 3jt)." },
-      about: { title: "Tentang Kami - SolusiLokal.ID", desc: "Mengenal lebih dekat SolusiLokal, System Builder dan Digital Studio yang membangun fondasi teknologi UMKM dari Palangka Raya." },
-      contact: { title: "Hubungi Kami Konsultasi - SolusiLokal.ID", desc: "Mulai konsultasi gratis untuk membedah tantangan operasional bisnis jasa Anda. Hubungi kami via WhatsApp atau Email." },
-      login: { title: "Client Login - SolusiLokal.ID", desc: "Akses masuk dasbor terpadu SolusiLokal untuk memantau kemajuan proyek digital Anda." },
-      dashboard: { title: "System Dashboard - SolusiLokal.ID", desc: "Pusat manajemen operasional internal SolusiLokal." }
+      home: { 
+        title: "SolusiLokal.ID | Digital Growth Partner & Creative Studio Palangka Raya", 
+        desc: "Partner pengembangan digital dari Palangka Raya. Bangun website profesional, sistem booking otomatis, dan identitas visual bisnis Anda bersama SolusiLokal.ID." 
+      },
+      services: { 
+        title: "Layanan Website, Branding & System Development | SolusiLokal.ID", 
+        desc: "Tingkatkan kredibilitas bisnis jasa Anda dengan layanan pembuatan website kustom, desain identitas visual, dan pengembangan dashboard operasional." 
+      },
+      solutions: { 
+        title: "Solusi Arsitektur Digital Bisnis Jasa | SolusiLokal.ID", 
+        desc: "Solusi digital tepat sasaran berdasarkan fase bisnis Anda, mulai dari paket Starter untuk kehadiran online hingga paket Pro untuk sistem terskala." 
+      },
+      portfolio: { 
+        title: "Portofolio Proyek Transformasi Digital | SolusiLokal.ID", 
+        desc: "Lihat hasil nyata kolaborasi SolusiLokal dengan brand lokal seperti Luniflow dan Lunilooks dalam membangun ekosistem digital yang efisien." 
+      },
+      process: { 
+        title: "Workflow Kerja & Proses Pengerjaan Sistem | SolusiLokal.ID", 
+        desc: "Proses transparan dan terstruktur dari fase konsultasi, perencanaan arsitektur, pengembangan build, hingga peluncuran sistem." 
+      },
+      pricing: { 
+        title: "Paket Investasi Website & Sistem UMKM | SolusiLokal.ID", 
+        desc: "Transparansi harga layanan pembuatan website dan pengembangan sistem digital di Palangka Raya. Investasi mulai dari 3 juta rupiah." 
+      },
+      about: { 
+        title: "Tentang SolusiLokal - Hermon Triberly Karisma", 
+        desc: "Mengenal SolusiLokal, digital partner yang dipimpin oleh Hermon Triberly Karisma, kreator multidisiplin dan pengajar DKV di Palangka Raya." 
+      },
+      contact: { 
+        title: "Konsultasi Gratis - Hubungi Kami Sekarang | SolusiLokal.ID", 
+        desc: "Siap membawa bisnis Anda ke level berikutnya? Mulai konsultasi gratis tantangan digital Anda melalui WhatsApp atau Email resmi kami." 
+      },
+      login: { 
+        title: "Client Portal Login | SolusiLokal.ID", 
+        desc: "Masuk ke dasbor terpadu untuk memantau progres proyek dan manajemen layanan digital Anda." 
+      },
+      dashboard: { 
+        title: "System Admin Dashboard | SolusiLokal.ID", 
+        desc: "Panel kontrol operasional internal SolusiLokal." 
+      }
     };
 
     if (seoData[currentPath]) {
@@ -102,6 +150,7 @@ export default function SolusiLokalApp() {
 
   return (
     <>
+      {/* Schema.org markup untuk Google */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
       
       <div className="font-sans antialiased text-slate-900 bg-white dark:bg-slate-900 dark:text-white selection:bg-[#00D2D3] selection:text-white min-h-screen transition-colors duration-300 flex flex-col relative overflow-x-hidden">
@@ -139,7 +188,7 @@ export default function SolusiLokalApp() {
 
         {!isDashboardOrLogin && <Footer setPath={setCurrentPath} />}
 
-        {/* FLOATING WA BUTTON - Posisi responsif diperbaiki untuk mobile dan desktop */}
+        {/* FLOATING WA BUTTON */}
         {!isDashboardOrLogin && (
           <a 
             href="https://wa.me/6289529605601?text=Halo%20SolusiLokal%2C%20saya%20ingin%20konsultasi%20mengenai%20layanan%20digital%20untuk%20bisnis%20jasa%20saya." 
@@ -246,7 +295,6 @@ function Footer({ setPath }) {
         </div>
       </section>
 
-      {/* pb-24 pada mobile memastikan floating WA tidak menutupi informasi bawah footer saat di-scroll mentok */}
       <footer className="bg-slate-50 dark:bg-slate-950 pt-16 md:pt-20 pb-24 md:pb-10 px-4 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300 mt-auto">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 md:mb-16">
           <div className="lg:col-span-2">
@@ -369,7 +417,7 @@ function HomePage({ setPath }) {
         </div>
       </section>
 
-      {/* BAGIAN STUDI KASUS (PORTOFOLIO) */}
+      {/* PORTOFOLIO */}
       <section className="py-20 md:py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12 md:mb-16">
@@ -396,7 +444,7 @@ function HomePage({ setPath }) {
         </div>
       </section>
 
-      {/* BAGIAN TESTIMONIAL */}
+      {/* TESTIMONIALS */}
       <section className="py-20 md:py-24 bg-white dark:bg-slate-900 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12 md:mb-16">
@@ -1132,7 +1180,7 @@ function LoginPage({ setPath }) {
          <p className="text-slate-400 font-black text-[9px] md:text-[10px] uppercase tracking-widest mb-8 md:mb-10 relative z-10">Dasbor Terpadu SolusiLokal</p>
          
          {errorMsg && (
-            <div className="mb-6 p-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-xl text-xs md:text-sm font-bold border border-red-100 dark:border-red-900/50">
+            <div className="mb-6 p-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-xl text-sm font-bold border border-red-100 dark:border-red-900/50">
                {errorMsg}
             </div>
          )}

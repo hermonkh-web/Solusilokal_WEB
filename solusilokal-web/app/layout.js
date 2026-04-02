@@ -12,22 +12,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "solusilokal-web",
-  description: "solusilokal-web is a web application for local solutions.",
+  title: "SolusiLokal.ID",
+  description: "SolusiLokal.ID - Solusi untuk kebutuhan digital Anda",
 };
-
-
 
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col" suppressHydrationWarning>
-        {children}
-      </body>
+      <body suppressHydrationWarning className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }
